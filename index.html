@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY PORTFOLIO SPACE - SHREYASH BHAGAT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="cur"></div>
+  <canvas id="canvas"></canvas>
+
+  <nav>
+    <span class="logo-text" id="logo">SHREYASH BHAGAT</span>
+    <ul class="nav-sections">
+      <li><a href="#" id="nav-h" class="active" onclick="loadText('home');return false">Home</a></li>
+      <li><a href="#" id="nav-a"                onclick="loadText('about');return false">About</a></li>
+      <li><a href="#" id="nav-s"                onclick="loadText('skills');return false">Skills</a></li>
+      <li><a href="#" id="nav-i"                onclick="loadText('info');return false">Info</a></li>
+      <li><a href="https://www.google.com" target="_blank" id="nav-o">Others</a></li>
+    </ul>
+  </nav>
+
+  <div id="mode-label">SNAKE MODE</div>
+  <button id="panel-toggle" onclick="togglePanel()">⚙ Controls</button>
+
+  <div id="panel">
+    <div class="panel-title" id="panel-title">
+      <span class="panel-drag-handle">⠿ Controls</span>
+      <span class="panel-close" onclick="togglePanel()">×</span>
+    </div>
+
+    <div class="ctrl-group">
+      <span class="ctrl-label">Mode</span>
+      <div class="ctrl-row" style="flex-wrap:wrap;gap:5px;">
+        <button class="ctrl-btn active" id="btn-snake"    onclick="setMode('snake')">🐍</button>
+        <button class="ctrl-btn"        id="btn-earth"    onclick="setMode('earth')">🔶</button>
+        <button class="ctrl-btn"        id="btn-electro"  onclick="setMode('electro')">⚡</button>
+        <button class="ctrl-btn"        id="btn-pingpong" onclick="setMode('pingpong')">🏓</button>
+        <button class="ctrl-btn"        id="btn-simple"   onclick="setMode('simple')">⬜</button>
+        <button class="ctrl-btn"        id="btn-fire"     onclick="setMode('fire')">🔥</button>
+        <button class="ctrl-btn"        id="btn-suction"  onclick="setMode('suction')">🟣</button>
+        <button class="ctrl-btn"        id="btn-freeze"   onclick="setMode('freeze')">❄️</button>
+      </div>
+    </div>
+
+    <div class="ctrl-group">
+      <span class="ctrl-label">Force <span class="ctrl-val" id="val-force">60</span></span>
+      <input type="range" id="sl-force" min="10" max="120" value="60"
+        oninput="CONFIG.force=+this.value;document.getElementById('val-force').textContent=this.value">
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Radius <span class="ctrl-val" id="val-radius">130</span></span>
+      <input type="range" id="sl-radius" min="40" max="300" value="130"
+        oninput="CONFIG.radius=+this.value;document.getElementById('val-radius').textContent=this.value">
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Spring <span class="ctrl-val" id="val-spring">0.04</span></span>
+      <input type="range" id="sl-spring" min="1" max="20" value="4"
+        oninput="CONFIG.spring=this.value/100;document.getElementById('val-spring').textContent=CONFIG.spring.toFixed(2)">
+    </div>
+
+    <div class="ctrl-group">
+      <div class="ctrl-row">
+        <button class="ctrl-btn" onclick="resetAll()" style="flex:1">↺ Reset</button>
+      </div>
+    </div>
+    
+    <div class="ctrl-group" id="pp-score-group" style="display:none">
+      <span class="ctrl-label">Score</span>
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:4px;">
+        <span id="pp-user-score" style="color:#888">YOU: 0</span>
+        <span id="pp-bot-score"  style="color:#888">BOT: 0</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottom">
+    <button class="mode-btn active" id="mb-snake"    onclick="setMode('snake')">    <span class="mode-dot"></span>🐍 Snake</button>
+    <button class="mode-btn"        id="mb-earth"    onclick="setMode('earth')">    <span class="mode-dot"></span>🔶 antigravity</button>
+    <button class="mode-btn"        id="mb-electro"  onclick="setMode('electro')">  <span class="mode-dot"></span>⚡ Electro</button>
+    <button class="mode-btn"        id="mb-pingpong" onclick="setMode('pingpong')"> <span class="mode-dot"></span>🏓 Ping Pong</button>
+    <button class="mode-btn"        id="mb-simple"   onclick="setMode('simple')">   <span class="mode-dot"></span>⬜ Simple</button>
+    <button class="mode-btn"        id="mb-fire"     onclick="setMode('fire')">     <span class="mode-dot"></span>🔥 Fire</button>
+    <button class="mode-btn"        id="mb-suction"  onclick="setMode('suction')">  <span class="mode-dot"></span>🟣 Suction</button>
+    <button class="mode-btn"        id="mb-freeze"   onclick="setMode('freeze')">   <span class="mode-dot"></span>❄️ Freeze</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
